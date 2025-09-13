@@ -1,0 +1,200 @@
+📋 Blueprint - Sistema ERP Modular
+
+  🏗️ Arquitetura Geral
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                            ERP MODULAR SYSTEM                             │
+  ├─────────────────┬─────────────────┬─────────────────┬─────────────────────┤
+  │   Frontend      │   Realtime      │   API Laravel   │    Infrastructure   │
+  │   React + Vite  │   Node.js       │   PHP 8.3+      │    PostgreSQL      │
+  │   TypeScript    │   Socket.IO     │   Eloquent ORM  │    Redis           │
+  │   Port: 9002    │   Port: 9001    │   Port: 9000    │    Nginx: 8083     │
+  └─────────────────┴─────────────────┴─────────────────┴─────────────────────┘
+
+  📁 Estrutura de Diretórios
+
+  ERPX/
+  ├── 🖥️  api/                 # Backend Laravel
+  │   ├── app/
+  │   │   ├── Http/Controllers/
+  │   │   ├── Models/
+  │   │   ├── Modules/         # Módulos do ERP
+  │   │   │   ├── CRM/        # Gestão de relacionamento
+  │   │   │   ├── Sales/      # Vendas e pedidos
+  │   │   │   └── Inventory/  # Gestão de estoque
+  │   │   ├── Services/
+  │   │   └── Traits/
+  │   ├── config/
+  │   ├── database/
+  │   └── routes/
+
+  ├── 🎨  frontend/            # Frontend React
+  │   ├── src/
+  │   │   ├── components/     # Componentes reutilizáveis
+  │   │   ├── pages/         # Páginas da aplicação
+  │   │   ├── hooks/         # Hooks customizados
+  │   │   ├── services/      # Integração com APIs
+  │   │   ├── contexts/      # Context providers
+  │   │   └── utils/         # Utilitários
+
+  ├── ⚡  realtime/           # Servidor de eventos em tempo real
+  │   └── server.js          # WebSocket server
+
+  ├── 📱  mobile/             # App React Native
+  │   ├── android/
+  │   ├── ios/
+  │   └── src/
+
+  ├── 🐳  deploy/             # Configurações de deployment
+  │   └── nginx/
+
+  ├── 🧪  loadtesting/        # Testes de carga
+  │   └── k6/
+
+  └── 🎨  teamplate/          # Templates de UI
+      └── HTML/
+
+  🔧 Stack Tecnológica
+
+  Backend (API)
+
+  - Framework: Laravel (PHP 8.3+)
+  - Database: PostgreSQL 15
+  - Cache: Redis 7
+  - Queue: Redis Queue
+  - Authentication: JWT
+  - Documentation: Swagger/OpenAPI
+
+  Frontend
+
+  - Framework: React 18 + TypeScript
+  - Build: Vite
+  - Styling: Tailwind CSS
+  - State: Context API / Zustand
+  - Testing: Cypress
+
+  Realtime
+
+  - Runtime: Node.js 18
+  - WebSocket: Socket.IO
+  - Communication: Redis pub/sub
+
+  Infrastructure
+
+  - Containerization: Docker + Docker Compose
+  - Reverse Proxy: Nginx
+  - Mail Testing: MailHog
+  - Monitoring: Health checks integrados
+
+  🎯 Módulos Funcionais
+
+  Core System
+
+  - ✅ Multi-empresa (Multi-tenancy)
+  - ✅ Usuários e autenticação (RBAC)
+  - ✅ Sistema de permissões granular
+  - ✅ Importação de dados (CSV/Excel)
+  - ✅ Sistema de webhooks
+
+  CRM (Customer Relationship Management)
+
+  - ✅ Gestão de leads e oportunidades
+  - ✅ Pipeline Kanban com drag & drop
+  - ✅ Atividades e histórico de contatos
+  - ✅ Eventos em tempo real
+
+  Sales (Vendas)
+
+  - ✅ Catálogo de produtos
+  - ✅ Pedidos de venda
+  - ✅ Listas de preços dinâmicas
+  - ✅ Sistema de aprovação de descontos
+
+  Inventory (Estoque)
+
+  - ✅ Gestão de estoque por localização
+  - ✅ Movimentações e reservas
+  - ✅ Inventário físico
+  - ✅ Rastreamento de lotes
+
+  🚀 Pontos de Acesso
+
+  | Serviço  | URL                        | Descrição           |
+  |----------|----------------------------|---------------------|
+  | Frontend | http://localhost:9002      | Interface principal |
+  | API      | http://localhost:9000      | REST API            |
+  | Swagger  | http://localhost:9000/docs | Documentação da API |
+  | Realtime | ws://localhost:9001        | WebSocket server    |
+  | Nginx    | http://localhost:8083      | Proxy reverso       |
+  | MailHog  | http://localhost:8025      | Interface de emails |
+
+  🔐 Segurança
+
+  - Autenticação: JWT com refresh tokens
+  - Autorização: RBAC com policies por módulo
+  - Multi-empresa: Isolamento total por company_id
+  - Rate Limiting: Proteção contra abuso
+  - Validação: Sanitização rigorosa (backend + frontend)
+
+  📊 Características Técnicas
+
+  Performance
+
+  - Cache Redis para consultas frequentes
+  - Otimização de queries com Eloquent
+  - Lazy loading no frontend
+  - CDN ready para assets estáticos
+
+  Escalabilidade
+
+  - Arquitetura de microsserviços
+  - Queue workers para processamento assíncrono
+  - WebSocket para comunicação real-time
+  - Docker para deploy horizontal
+
+  Observabilidade
+
+  - Health checks em todos os serviços
+  - Logs estruturados em JSON
+  - Métricas Prometheus ready
+  - Monitoring dashboards
+
+  🎮 Comandos Úteis
+
+  # 🚀 Inicialização
+  make up          # Subir todos os serviços
+  make seed        # Popular banco com dados iniciais
+
+  # 🔧 Desenvolvimento  
+  make logs        # Ver logs em tempo real
+  make api-shell   # Shell do container Laravel
+  make db-shell    # Acesso direto ao PostgreSQL
+
+  # 🧪 Testes
+  make test        # Executar suite completa de testes
+
+  # 🧹 Limpeza
+  make down        # Parar todos os serviços
+  make fresh       # Reset completo do sistema
+
+  🎯 Próximos Módulos (Roadmap)
+
+  Contabilidade
+
+  - Plano de contas
+  - Lançamentos contábeis
+  - Relatórios financeiros (DRE, Balanço)
+
+  RH (Recursos Humanos)
+
+  - Cadastro de funcionários
+  - Folha de pagamento
+  - Controle de ponto eletrônico
+
+  Projetos
+
+  - Gestão de projetos
+  - Controle de tarefas
+  - Timesheet integrado
+
+  Este é um sistema ERP completo e modular, pronto para uso em produção e escalável! 🚀
